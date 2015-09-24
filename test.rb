@@ -38,8 +38,8 @@ class GameTest < Minitest::Test
 
   def test_can_you_escape_death
     g = Game.new answer:"monkey"
-    "monkey".split("").each {|letter| g.check_guess letter}
-    assert_equal true, g.over?
+    "monkey".split("").each {|letter| g.print_board letter}
+    assert_equal true, g.won?
 
   end
 
