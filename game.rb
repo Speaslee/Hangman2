@@ -14,30 +14,24 @@ class Game
     @correct_guesses= []
   end
 
-def out_of_guesses?
-  @correct_guesses == 0
-end
+  def out_of_guesses?
+    @correct_guesses == 0
+  end
 
-def print_board letter
-  @word_array.each do |letter|
-    if @correct_guesses.include? letter
-      print letter
-    else
-      print "_"
+  def print_board letter
+    @word_array.each do |letter|
+      if @correct_guesses.include? letter
+        print letter
+      else
+        print "_"
+      end
     end
+
   end
-@correct_guesses.each do |letter|
-  word= @correct_guesses.sort.join("")
-  correct_letters=@word_array.uniq.sort.join("")
-  if word == correct_letters
-    @correct_answer=true
-  end
-end
-end
 
   def word_chosen
     @word
-end
+  end
 
   def guesses_left
     @guesses_left
@@ -51,24 +45,28 @@ end
 
     guess=  @word.count letter
     puts "There are #{guess} #{letter}'s in the word. "
-      if guess == 0
-        @guesses_left= @guesses_left -1
-      else puts "Good job."
-        @guesses_left
-      end
-      if @word.include? letter
-        @correct= true
-        @correct_guesses.push (letter)
-      end
-
+    if guess == 0
+      @guesses_left= @guesses_left -1
+    else puts "Good job."
+      @guesses_left
     end
+    if @word.include? letter
+      @correct= true
+      @correct_guesses.push (letter)
+    end
+    word= @correct_guesses.sort.join("")
+    correct_letters=@word_array.uniq.sort.join("")
+    if word == correct_letters
+      @correct_answer=true
+  end
+  end
 
-    def won?
+  def won?
     @correct_answer
-    end
+  end
 
   def over?
-   @correct_answer || @guesses_left == 0
+    @correct_answer || @guesses_left == 0
   end
 
 end

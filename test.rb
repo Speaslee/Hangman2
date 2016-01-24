@@ -31,14 +31,15 @@ class GameTest < Minitest::Test
   def test_can_you_guess_correctly
     g = Game.new answer: "monkey"
    g.check_guess "m"
-   result="m"
+   result=g.check_guess "m"
    assert_equal "m", result
 
   end
 
   def test_can_you_escape_death
     g = Game.new answer:"monkey"
-    "monkey".split("").each {|letter| g.print_board letter}
+    "monkey".split("").all? {|letter| g.print_board letter}
+    g.check_guess
     assert_equal true, g.won?
 
   end
